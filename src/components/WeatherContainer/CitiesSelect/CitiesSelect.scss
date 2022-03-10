@@ -1,0 +1,16 @@
+// .cities {
+//   list-style: none;
+//   padding: 20px;
+//   border-radius: 10px;
+//   border: 1px solid #000;
+//   &__city {
+//   }
+// }
+.cities_city {
+  cursor: pointer;
+  @media (min-width: 991px) {
+    &:hover {
+      background-color: #000;
+    }
+  }
+}
