@@ -1,4 +1,4 @@
-export const supportedLanguages = ['en', 'ru', 'fr'] as const
+export const supportedLanguages = ['en', 'ru', 'es'] as const
 export type SupportedLanguages = typeof supportedLanguages[number]
 
 export const languages = [
@@ -13,8 +13,8 @@ export const languages = [
     country_code: 'ru',
   },
   {
-    code: 'fr',
-    name: 'Français',
-    country_code: 'fr',
+    code: 'es',
+    name: 'Español',
+    country_code: 'es',
   },
 ]

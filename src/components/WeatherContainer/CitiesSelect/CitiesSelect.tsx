@@ -1,8 +1,9 @@
 import { HomeOutlined } from '@ant-design/icons'
 import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router'
-import { CityResponse } from '../../../api/WeatherResponseTypes'
+import { CityResponse } from '../../../api/WeatherAPI/WeatherAPI.types'
 import { weatherActions } from '../../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../../store/reducers/weather/weatherSelectors'
 import { parseCityLocation } from '../../../utils/parse'
@@ -12,6 +13,7 @@ import { SelectCityContainer, SelectCityTitle, StyledDivider, StyledUl } from '.
 const CitiesSelect: FC = () => {
   const navigate = useNavigate()
   const { code } = useParams()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { possibleCities } = useSelector(getWeatherList)
 
@@ -19,14 +21,13 @@ const CitiesSelect: FC = () => {
     dispatch(weatherActions.setCurrentCity(city))
     dispatch(weatherActions.setForecastDay(0))
     const cityPath = getGeoPath(city.country, city.name, city.lat, city.lon)
-
     navigate(`/${code}/${cityPath}/day=0`)
   }
 
   return (
     <SelectCityContainer>
       <SelectCityTitle>
-        <HomeOutlined /> <p>Select city:</p>
+        <HomeOutlined /> <p>{t('select_city')}:</p>
       </SelectCityTitle>
 
       <StyledDivider />

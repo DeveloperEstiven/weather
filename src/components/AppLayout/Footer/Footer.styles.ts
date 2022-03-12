@@ -21,7 +21,7 @@ export const StyledFooter = styled.footer`
 
     svg {
       margin-left: 20px;
-      fill: #fff;
+      fill: ${props => props.theme.colors.text};
       font-size: 24px;
       cursor: pointer;
       transition: fill 0.3s ease 0s;

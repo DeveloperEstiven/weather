@@ -6,14 +6,13 @@ import { getWeather } from '../../../store/reducers/weather/weatherActionCreator
 import { getWeatherList } from '../../../store/reducers/weather/weatherSelectors'
 import { getGeoPath } from '../../../utils/url'
 import { getLanguageFromCookie } from '../../AppLayout/Menu/SelectLanguage/SelectLanguage'
-import Error from '../../UI/Error'
 import CityName from './CityName'
 import Forecast from './Forecast'
 import { WeatherProps } from './Weather.types'
 import WeatherDisplay from './WeatherDisplay'
 
 const Weather: FC<WeatherProps> = ({ city }) => {
-  let { error, weather, isFetching, hasWeather, hasForecast } = useSelector(getWeatherList)
+  let { weather, isFetching, hasWeather, hasForecast } = useSelector(getWeatherList)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const code = getLanguageFromCookie()
@@ -32,7 +31,6 @@ const Weather: FC<WeatherProps> = ({ city }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, code, city])
 
-  if (error) return <Error errorMessage={error} />
   return (
     <>
       {!isFetching && (hasWeather || hasForecast) && (

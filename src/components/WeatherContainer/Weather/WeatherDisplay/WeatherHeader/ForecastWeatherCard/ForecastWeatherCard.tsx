@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import DetailInfo from '../DetailInfo'
 import Header from '../Header'
 import { WeatherCards } from '../WeatherHeader.styles'
-import './ForecastWeatherCard.scss'
 import { ForecastWeatherCardProps } from './ForecastWeatherCard.types'
 import WeatherTabs from './WeatherTabs'
 

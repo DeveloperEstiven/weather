@@ -1,4 +1,4 @@
-import { CityResponse } from './../api/WeatherResponseTypes'
+import { CityResponse } from '../api/WeatherAPI/WeatherAPI.types'
 
 export const getGeoPath = (country: string, city: string, lat: number, lon: number) => {
   return `country=${country}&city=${city}&lat=${lat}&lon=${lon}`

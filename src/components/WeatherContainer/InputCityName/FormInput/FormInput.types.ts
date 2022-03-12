@@ -1,5 +1,5 @@
 import { FormikErrors, FormikTouched } from 'formik'
-import { AutocompleteResult } from '../../../../api/geocoderAPI'
+import { AutocompleteResult } from '../../../../api/geocoderAPI/geocoderAPI.types'
 
 export type FormInputProps = {
   errors: FormikErrors<{ autocomplete: string }>

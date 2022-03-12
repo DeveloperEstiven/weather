@@ -1,5 +1,5 @@
-import { AutocompleteResponse, AutocompleteResult } from '../api/geocoderAPI'
-import { CityResponse, Weather } from './../api/WeatherResponseTypes'
+import { AutocompleteResponse, AutocompleteResult } from '../api/geocoderAPI/geocoderAPI.types'
+import { CityResponse, Weather } from '../api/WeatherAPI/WeatherAPI.types'
 
 export const parseCityLocation = (city: CityResponse, code: string | undefined) => {
   const { country, name, state, local_names } = city

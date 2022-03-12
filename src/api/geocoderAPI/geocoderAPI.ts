@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AutocompleteResponse, Location } from './geocoderAPI.types'
 const key = 'pk.d96c1a7c04a92ba04734c0135022c11a'
 
 const createInstance = (lang: string) => {
@@ -7,33 +8,6 @@ const createInstance = (lang: string) => {
     headers: { 'accept-language': lang },
   })
 }
-
-export type Address = {
-  city: string
-  country: string
-  country_code: string
-  district: string
-  house_number: string
-  municipality: string
-  postcode: string
-  road: string
-  state: string
-}
-
-export type Location = {
-  address: Address
-  boundingbox: string[]
-  display_name: string
-  lat: string
-  licence: string
-  lon: string
-  osm_id: string
-  osm_type: string
-  place_id: string
-}
-
-export type AutocompleteResponse = { display_place: string }[]
-export type AutocompleteResult = { value: string }[]
 
 const geocoderApi = {
   getWeatherByGeo: (lat: number, lon: number, lang: string = 'en') =>

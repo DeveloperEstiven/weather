@@ -20,14 +20,14 @@ const Forecast: FC<ForecastProps> = ({ weather, timezone }) => {
       dispatch(weatherActions.forecastReceived(weather[dayNum], dayNum))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, weather]) //! dispatch, num, weather
+  }, [dispatch, weather])
 
   return (
     <div>
       <StyledCollapse
         bordered={false}
         defaultActiveKey={['1']}
-        className='site-collapse-custom-collapse'
+        className='site-cllapse-custom-collapse'
         expandIcon={({ isActive }) => (
           <Arrow>
             <RightOutlined rotate={isActive ? 90 : 0} />

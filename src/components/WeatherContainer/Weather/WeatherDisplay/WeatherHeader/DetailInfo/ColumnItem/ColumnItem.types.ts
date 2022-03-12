@@ -1,4 +1,4 @@
-import { CurrentWeather, DailyWeather } from '../../../../../../../api/WeatherResponseTypes'
+import { CurrentWeather, DailyWeather } from '../../../../../../../api/WeatherAPI/WeatherAPI.types'
 import { UnitTemp } from '../../../../../../../utils/convertTemperature'
 import { commonUnitSymbols } from '../../../FilterHourlyForecast/FilterHourlyForecast.types'
 

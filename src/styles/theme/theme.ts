@@ -1,7 +1,8 @@
-export type ThemeType = typeof lightTheme // This is the type definition for my theme object.
+export type ThemeType = typeof lightTheme
 
 export const lightTheme = {
   borderRadius: '2px',
+  maxWidthContainer: '1000px',
   colors: {
     body: '#eddcd2',
     text: '#121212',
@@ -13,22 +14,10 @@ export const lightTheme = {
     feelsLikeLine: '#cb997e',
   },
 }
-// export const lightTheme = {
-//   borderRadius: '2px',
-//   colors: {
-//     body: '#EAEAEA',
-//     text: '#121212',
-//     backgroundMain: '#fff',
-//     backgroundPrimary: '#ffa751',
-//     backgroundSecondary: '#ffe259',
-//     backgroundBadge: '#FFE000',
-//     temperatureLine: '#FFE000',
-//     feelsLikeLine: '#F2C94C',
-//   },
-// }
 
 export const darkTheme: ThemeType = {
   borderRadius: '2px',
+  maxWidthContainer: '1000px',
   colors: {
     body: '#151b20',
     text: '#f5f5f5',

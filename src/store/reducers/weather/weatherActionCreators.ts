@@ -1,11 +1,12 @@
 import { Dispatch } from 'react'
 import { BaseThunk, InferAction } from '../..'
-import geocoderApi, { AutocompleteResult } from '../../../api/geocoderAPI'
 import { FilterOption } from '../../../components/WeatherContainer/Weather/WeatherDisplay/FilterHourlyForecast/FilterHourlyForecast'
 import { getUniqueAutocomplete, getUniquePossibleCities } from '../../../utils/parse'
-import WeatherAPI from './../../../api/WeatherAPI'
-import { CityResponse, DailyWeather, WeatherResponse } from './../../../api/WeatherResponseTypes'
+import WeatherAPI from '../../../api/WeatherAPI/WeatherAPI'
+import { CityResponse, DailyWeather, WeatherResponse } from '../../../api/WeatherAPI/WeatherAPI.types'
 import { compareCities } from './../../../utils/url'
+import { AutocompleteResult } from '../../../api/geocoderAPI/geocoderAPI.types'
+import geocoderApi from '../../../api/geocoderAPI/geocoderAPI'
 
 export const enum WeatherActionsTypes {
   WEATHER_RECEIVED = 'weather/WEATHER_RECEIVED',

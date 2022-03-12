@@ -1,6 +1,7 @@
 import { AppTheme } from './appReducer'
 import { BaseThunk, InferAction } from '../..'
-import geocoderApi, { Location } from '../../../api/geocoderAPI'
+import geocoderApi from '../../../api/geocoderAPI/geocoderAPI'
+import { Location } from '../../../api/geocoderAPI/geocoderAPI.types'
 
 export const enum AppActionsTypes {
   SET_THEME = 'app/TOGGLE_THEME',

@@ -1,4 +1,4 @@
-import { Location } from '../../../api/geocoderAPI'
+import { Location } from '../../../api/geocoderAPI/geocoderAPI.types'
 import { AppAction, AppActionsTypes } from './appActionCreators'
 
 export type AppTheme = 'dark' | 'light'

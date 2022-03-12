@@ -23,7 +23,7 @@ const FilterHourlyForecast: FC = () => {
     const filterValue = (localStorage.getItem('filter') as FilterOption) || 'temp'
     dispatch(weatherActions.setSelectedFilter(filterValue))
     setFilterValue(filterValue)
-  }, [dispatch]) //!
+  }, [dispatch])
 
   const onFilterSelect = (value: FilterOption) => {
     localStorage.setItem('filter', value)

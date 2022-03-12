@@ -6,19 +6,15 @@ import { StyledDiv, StyledSpan, StyledSwitch } from './UnitsButtons.styles'
 
 const UnitsButtons: FC = () => {
   const dispatch = useDispatch()
-  // const [isCelsius, setIsCelsus] = useState(true)
-
   const { units } = useSelector(getWeatherList)
 
   const toggleUnit = (checked: boolean) => {
     if (checked) {
       dispatch(weatherActions.setUnits('fahrenheit'))
       localStorage.setItem('units', 'fahrenheit')
-      // setIsCelsus(false)
     } else {
       dispatch(weatherActions.setUnits('celsius'))
       localStorage.setItem('units', 'celsius')
-      // setIsCelsus(true)
     }
   }
 
@@ -26,9 +22,8 @@ const UnitsButtons: FC = () => {
     const localUnits = localStorage.getItem('units') as 'celsius' | 'fahrenheit' | null
     if (localUnits) {
       dispatch(weatherActions.setUnits(localUnits))
-      // setIsCelsus(localUnits === 'celsius' ? true : false)
     } else dispatch(weatherActions.setUnits('celsius'))
-  }, [dispatch]) //! dispatch
+  }, [dispatch])
 
   return (
     <StyledDiv>

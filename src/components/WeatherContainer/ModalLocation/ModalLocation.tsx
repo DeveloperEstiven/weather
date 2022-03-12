@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ModalLocationProps } from './ModalLocation.types'
 
-const ModalLocation: FC<ModalLocationProps> = ({ address, setIsLocationCorrect, inputRef }) => {
+const ModalLocation: FC<ModalLocationProps> = ({ address, setIsLocationCorrect }) => {
   const [isModalVisible, setIsModalVisible] = useState(true)
   const { t } = useTranslation()
 
@@ -15,7 +15,6 @@ const ModalLocation: FC<ModalLocationProps> = ({ address, setIsLocationCorrect, 
 
   const handleCancel = () => {
     setIsModalVisible(false)
-    inputRef.current!.focus()
     setIsLocationCorrect('false')
   }
 

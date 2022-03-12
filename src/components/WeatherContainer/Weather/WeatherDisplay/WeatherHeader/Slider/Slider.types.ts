@@ -1,4 +1,4 @@
-import { Weather } from '../../../../../../api/WeatherResponseTypes'
+import { Weather } from '../../../../../../api/WeatherAPI/WeatherAPI.types'
 import { UnitTemp } from '../../../../../../utils/convertTemperature'
 
 export type SliderProps = {

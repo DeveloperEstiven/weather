@@ -6,14 +6,15 @@ const StyledPage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
+  text-align: center;
+  font-weight: 700;
   line-height: 2em;
 `
 
 const Page404 = () => {
   return (
     <StyledPage>
-      404 <br /> not found
+      404 <br /> Not found
     </StyledPage>
   )
 }

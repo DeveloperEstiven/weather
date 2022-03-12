@@ -1,4 +1,4 @@
-import { CityResponse } from '../../../api/WeatherResponseTypes'
+import { CityResponse } from '../../../api/WeatherAPI/WeatherAPI.types'
 
 export type WeatherProps = {
   city: CityResponse

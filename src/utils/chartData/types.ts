@@ -1,4 +1,4 @@
-import { HourlyWeather } from '../../api/WeatherResponseTypes'
+import { HourlyWeather } from '../../api/WeatherAPI/WeatherAPI.types'
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export interface IHourlyLite extends Omit<HourlyWeather, 'weather'> {}

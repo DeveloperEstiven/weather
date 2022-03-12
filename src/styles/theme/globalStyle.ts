@@ -1,18 +1,15 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => props.theme.colors.body}; 
     transition: color .3s linear;
     transition: background-color .3s linear;
+    font-family: 'Montserrat';
+    font-size: 16px;
   }
 
-  /* .ant-card-bordered {
-    border-top: 2px solid red;
-  } */
-
   ::-moz-selection {
-  /* Code for Firefox */
   background: ${props => props.theme.colors.backgroundSecondary};
   color: ${props => props.theme.colors.text}
   } 
@@ -96,3 +93,21 @@ export const media = {
   md4: mediaQuery(480),
   mmd4: mediaQueryMobile(480),
 }
+
+export const Container = styled.div`
+  max-width: ${props => props.theme.maxWidthContainer};
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  ${media.md1} {
+    max-width: 970px;
+  }
+  ${media.md2} {
+    max-width: 750px;
+  }
+  ${media.md3} {
+    max-width: none;
+    padding: 0 10px;
+  }
+`

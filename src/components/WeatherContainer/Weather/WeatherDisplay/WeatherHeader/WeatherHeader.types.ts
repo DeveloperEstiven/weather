@@ -1,4 +1,4 @@
-import { WeatherResponse } from '../../../../../api/WeatherResponseTypes'
+import { WeatherResponse } from '../../../../../api/WeatherAPI/WeatherAPI.types'
 
 export type WeatherHeaderProps = {
   weather: WeatherResponse

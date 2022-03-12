@@ -10,11 +10,6 @@ const ToggleTheme = () => {
   const dispatch = useDispatch()
   const theme = useSelector(getAppTheme)
 
-  // const changeMode = (mode: AppTheme) => {
-  //   localStorage.setItem('theme', mode)
-  //   dispatch(appActions.setTheme(mode))
-  // }
-
   const changeMode = useCallback(
     (mode: AppTheme) => {
       localStorage.setItem('theme', mode)
@@ -32,7 +27,7 @@ const ToggleTheme = () => {
     if (localTheme) {
       dispatch(appActions.setTheme(localTheme))
     } else changeMode('dark')
-  }, [changeMode, dispatch]) //! changeMode, dispatch
+  }, [changeMode, dispatch])
 
   return (
     <StyledDiv onClick={toggleTheme}>

@@ -1,13 +1,12 @@
 import { SmileOutlined } from '@ant-design/icons'
-import { Button, Input, notification, Space } from 'antd'
+import { Button, notification, Space } from 'antd'
 import { t } from 'i18next'
 import React from 'react'
 
 type Confirm = (flag: boolean) => void
 
-const onCancel = (key: string, inputRef: any) => {
+const onCancel = (key: string) => {
   notification.close(key)
-  inputRef.current!.focus()
   localStorage.setItem('showAgain', 'false')
 }
 
@@ -17,17 +16,16 @@ const onConfirm = (key: string, cb: Confirm) => {
   cb(true)
 }
 
-export const confirmLocation = (confirmCb: Confirm, inputRef: React.RefObject<Input>) => {
+export const confirmLocation = (confirmCb: Confirm) => {
   const key = `open${Date.now()}`
 
   const onClose = () => {
     notification.close(key)
-    inputRef.current!.focus()
   }
 
   const btn = (
     <Space>
-      <Button danger size='middle' onClick={() => onCancel(key, inputRef)}>
+      <Button type='primary' size='middle' onClick={() => onCancel(key)}>
         {t('dont_show')}
       </Button>
       <Button type='primary' size='middle' onClick={() => onConfirm(key, confirmCb)}>
@@ -35,6 +33,7 @@ export const confirmLocation = (confirmCb: Confirm, inputRef: React.RefObject<In
       </Button>
     </Space>
   )
+
   notification.open({
     message: t('confirm_location_message'),
     description: t('confirm_location_description'),

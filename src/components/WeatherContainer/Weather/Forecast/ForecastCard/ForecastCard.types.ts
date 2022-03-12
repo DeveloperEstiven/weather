@@ -1,4 +1,4 @@
-import { DailyWeather } from '../../../../../api/WeatherResponseTypes'
+import { DailyWeather } from '../../../../../api/WeatherAPI/WeatherAPI.types'
 
 export type ForecastCardProps = {
   weather: DailyWeather

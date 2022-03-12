@@ -1,4 +1,4 @@
-import { HourlyWeather } from '../../../../../../api/WeatherResponseTypes'
+import { HourlyWeather } from '../../../../../../api/WeatherAPI/WeatherAPI.types'
 
 export type HourlyChartProps = {
   weatherHourly: HourlyWeather[]

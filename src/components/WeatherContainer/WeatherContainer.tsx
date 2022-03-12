@@ -1,4 +1,4 @@
-import { Input, message } from 'antd'
+import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,9 @@ import { getCityInfo } from '../../store/reducers/app/appActionCreators'
 import { getAppLocation } from '../../store/reducers/app/appSelectors'
 import { getCityByGeo } from '../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../store/reducers/weather/weatherSelectors'
+import { Container } from '../../styles/theme/globalStyle'
 import { getCityLocationFromUrl } from '../../utils/url'
+import Error from '../UI/Error'
 import CitiesSelect from './CitiesSelect'
 import confirmLocation from './ConfirmLocation'
 import InputCityName from './InputCityName'
@@ -16,7 +18,7 @@ import { IsLocationCorrect } from './ModalLocation/ModalLocation.types'
 import Weather from './Weather'
 
 const WeatherContainer = () => {
-  let { currentCity, possibleCities } = useSelector(getWeatherList)
+  let { currentCity, possibleCities, error } = useSelector(getWeatherList)
   let location = useSelector(getAppLocation)
   const dispatch = useDispatch()
   const { cityPath } = useParams()
@@ -25,12 +27,11 @@ const WeatherContainer = () => {
   const [isAcceptedLocation, setIsAcceptedLocation] = useState(false)
   const [isLocationCorrect, setIsLocationCorrect] = useState<IsLocationCorrect>('default')
   const showAgain = localStorage.getItem('showAgain') as 'true' | 'false' | null
-  const inputRef = React.useRef<Input>(null)
   const { t } = useTranslation()
 
   useEffect(() => {
-    !cityPath && (showAgain === 'true' || !showAgain) && confirmLocation(setIsAcceptedLocation, inputRef)
-  }, [cityPath, showAgain]) //! cityPath, showAgain
+    !cityPath && (showAgain === 'true' || !showAgain) && confirmLocation(setIsAcceptedLocation)
+  }, [cityPath, showAgain])
 
   useEffect(() => {
     if (cityPath) {
@@ -66,18 +67,17 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     location.address && !cityPath && dispatch(getCityByGeo(location.lat, location.lon, location.address.city))
-  }, [location, cityPath, dispatch]) //! cityPath, dispatch
+  }, [location, cityPath, dispatch])
 
+  if (error) return <Error errorMessage={error} />
   return (
     <div>
-      <div className='container'>
+      <Container>
         <InputCityName />
-        {location.address && (
-          <ModalLocation inputRef={inputRef} address={location.address} setIsLocationCorrect={setIsLocationCorrect} />
-        )}
+        {location.address && <ModalLocation address={location.address} setIsLocationCorrect={setIsLocationCorrect} />}
         {(isLocationCorrect === 'default' || isLocationCorrect === 'true') && <Weather city={currentCity} />}
         {possibleCities.length > 1 && <CitiesSelect />}
-      </div>
+      </Container>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { getWeatherList } from '../../../store/reducers/weather/weatherSelectors'
+import { Container } from '../../../styles/theme/globalStyle'
 import { PandaIcon } from '../../UI/icons/icons'
 import { CenteredSpace, HeaderInner, IconWrapper, StyledHeader, StyledText } from './Header.styles'
 import { HeaderProps } from './Header.types'
@@ -27,7 +28,7 @@ const Header: FC<HeaderProps> = ({ setVisible, headerRef }) => {
 
   return (
     <StyledHeader ref={headerRef} className={calc}>
-      <div className='container'>
+      <Container>
         <HeaderInner>
           <CenteredSpace>
             <PandaIcon style={{ fontSize: 32 }} />
@@ -39,7 +40,7 @@ const Header: FC<HeaderProps> = ({ setVisible, headerRef }) => {
             </IconWrapper>
           </Button>
         </HeaderInner>
-      </div>
+      </Container>
     </StyledHeader>
   )
 }

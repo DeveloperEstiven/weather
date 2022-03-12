@@ -1,6 +1,6 @@
-import { DailyWeather, TemperatureDaily } from '../../api/WeatherResponseTypes'
 import { toFahrenheit } from '../convertTemperature'
 import { t } from 'i18next'
+import { DailyWeather, TemperatureDaily } from '../../api/WeatherAPI/WeatherAPI.types'
 
 const getDataFromObj = (objs: {}[], isCelsius: boolean) => {
   const res = []

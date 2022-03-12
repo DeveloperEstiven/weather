@@ -1,10 +1,10 @@
 import { toMmRt } from './../convertTemperature'
 import { Data, IHourlyLite } from './types'
 import { FilterOption } from '../../components/WeatherContainer/Weather/WeatherDisplay/FilterHourlyForecast/FilterHourlyForecast'
-import { HourlyWeather } from '../../api/WeatherResponseTypes'
 import { toFahrenheit } from '../convertTemperature'
 import { timestampToDate } from '../parseTimestamp'
 import { t } from 'i18next'
+import { HourlyWeather } from '../../api/WeatherAPI/WeatherAPI.types'
 
 const getChartHourlyHours = (hourlyWeatherArr: HourlyWeather[]): number[] => hourlyWeatherArr.map(el => el.dt)
 
