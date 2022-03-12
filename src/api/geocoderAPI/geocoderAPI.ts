@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { AutocompleteResponse, Location } from './geocoderAPI.types'
-const key = 'pk.d96c1a7c04a92ba04734c0135022c11a'
+const key = process.env.REACT_APP_GEOCODER_API_KEY
 
 const createInstance = (lang: string) => {
   return axios.create({

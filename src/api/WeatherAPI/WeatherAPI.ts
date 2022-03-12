@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const baseWeatherURL = 'http://api.openweathermap.org/data/2.5/'
 const baseGeoURL = 'http://api.openweathermap.org/geo/1.0/'
-const appid = 'f2c19235b7b33a79fb3b010c0bd9a2b7'
+const appid = process.env.REACT_APP_WEATHER_API_KEY
 
 const WeatherAPI = {
   getWeatherByGeo: (lat: string, lon: string, lang: string, units: 'metric' | 'imperial' = 'metric') =>
