@@ -2,18 +2,13 @@ import { ResponsiveLine } from '@nivo/line'
 import React, { FC, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
-import { DailyWeather } from '../../../../../../api/WeatherResponseTypes'
 import { getWeatherList } from '../../../../../../store/reducers/weather/weatherSelectors'
 import { getChartDailyData } from '../../../../../../utils/chartData/dailyChart'
 import { DataChart } from '../../../../../../utils/chartData/types'
 import { UnitType } from '../../FilterHourlyForecast/FilterHourlyForecast'
 import { commonProperties } from '../commonOptions'
-import './ChartForecast.scss'
+import { ChartForecastProps } from './ChartForecast.types'
 
-type ChartForecastProps = {
-  weatherDaily: DailyWeather[]
-  isCelsius: boolean
-}
 const ChartForecast: FC<ChartForecastProps> = ({ weatherDaily, isCelsius }) => {
   const { forecastNum } = useSelector(getWeatherList)
   const theme = useTheme()

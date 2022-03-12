@@ -1,15 +1,7 @@
-import { Button, Input, Modal } from 'antd'
+import { Button, Modal } from 'antd'
 import React, { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Address } from '../../../api/geocoderAPI'
-import './ModalLocation.scss'
-
-export type IsLocationCorrect = 'true' | 'false' | 'default'
-type ModalLocationProps = {
-  address: Address
-  setIsLocationCorrect: (flag: IsLocationCorrect) => void
-  inputRef: React.RefObject<Input>
-}
+import { ModalLocationProps } from './ModalLocation.types'
 
 const ModalLocation: FC<ModalLocationProps> = ({ address, setIsLocationCorrect, inputRef }) => {
   const [isModalVisible, setIsModalVisible] = useState(true)

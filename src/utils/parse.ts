@@ -1,4 +1,3 @@
-import { reverse } from 'dns'
 import { AutocompleteResponse, AutocompleteResult } from '../api/geocoderAPI'
 import { CityResponse, Weather } from './../api/WeatherResponseTypes'
 

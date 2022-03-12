@@ -2,7 +2,6 @@ import { ReloadOutlined } from '@ant-design/icons'
 import { Button, Result, Row, Space } from 'antd'
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import './Error.scss'
 
 const StyledError = styled(Result)`
   margin-top: 50px;

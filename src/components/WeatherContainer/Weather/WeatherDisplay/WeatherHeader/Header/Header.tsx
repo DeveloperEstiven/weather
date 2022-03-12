@@ -1,28 +1,8 @@
-import { Space } from 'antd'
-import React, { FC } from 'react'
-import styled from 'styled-components'
-import { timestampToDate } from '../../../../../../utils/parseTimestamp'
 import { ClockCircleOutlined } from '@ant-design/icons'
-
-import './Header.scss'
+import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { media } from '../../../../../../styles/theme/globalStyle'
-
-const StyledHeader = styled.div<{ istoday: boolean }>`
-  display: flex;
-  justify-content: ${props => (props.istoday ? 'space-between' : 'center')};
-  margin-bottom: ${props => (props.istoday ? '24px' : '12px')};
-  @media (max-width: 480px) {
-    flex-direction: column;
-    text-align: center;
-  }
-`
-
-const StyledSpan = styled.span`
-  ${media.md3} {
-    margin-top: 10px;
-  }
-`
+import { timestampToDate } from '../../../../../../utils/parseTimestamp'
+import { StyledHeader, StyledSpan } from './Header.styles'
 
 type HeaderType = {
   dt: number

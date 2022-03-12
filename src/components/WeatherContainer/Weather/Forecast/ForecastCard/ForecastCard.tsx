@@ -1,65 +1,16 @@
-import { Badge, Card, Tooltip, Typography } from 'antd'
+import { Card, Typography } from 'antd'
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
-import { useNavigate } from 'react-router'
-import styled, { css } from 'styled-components'
+import { useNavigate, useParams } from 'react-router'
 import { DailyWeather } from '../../../../../api/WeatherResponseTypes'
-import ava from '../../../../../assets/cloudy.png'
 import { weatherActions } from '../../../../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../../../../store/reducers/weather/weatherSelectors'
 import { toFahrenheit } from '../../../../../utils/convertTemperature'
 import { parseWeatherDescription } from '../../../../../utils/parse'
 import { timestampToDate } from '../../../../../utils/parseTimestamp'
-
-import './ForecastCard.scss'
-
-type ForecastCardProps = {
-  weather: DailyWeather
-  timezone: string
-  cardNum: number
-}
-
-const Image = styled.div`
-  user-select: none;
-  img {
-    height: 100px;
-    width: 100px;
-  }
-`
-
-const StyledCard = styled(Card)<{ active: number }>`
-  text-align: center;
-  background: ${props => props.theme.colors.backgroundPrimary};
-  border-color: ${props => props.theme.colors.backgroundMain};
-  ${props =>
-    props.active &&
-    css`
-      background: ${props => props.theme.colors.backgroundSecondary};
-    `};
-`
-
-const StyledText = styled.div`
-  color: ${props => props.theme.colors.text};
-  span {
-    color: ${props => props.theme.colors.text};
-  }
-`
-
-const MyBadge = styled(Badge.Ribbon)`
-  color: ${props => props.theme.colors.backgroundBadge};
-  background: ${props => props.theme.colors.backgroundBadge};
-  span {
-    color: ${props => props.theme.colors.text};
-  }
-`
-const StyledTooltip = styled(Tooltip)`
-  color: ${props => props.theme.colors.backgroundBadge};
-  span {
-    color: ${props => props.theme.colors.text};
-  }
-`
+import { Image, MyBadge, StyledCard, StyledText, StyledTooltip } from './ForecastCard.styles'
+import { ForecastCardProps } from './ForecastCard.types'
 
 const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, cardNum }) => {
   const { units, forecastNum } = useSelector(getWeatherList)
@@ -84,6 +35,7 @@ const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, cardNum }) => 
       default:
         break
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [units])
 
   const onForecastClick = (dayForecast: DailyWeather, dayNum: number) => {
@@ -110,7 +62,7 @@ const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, cardNum }) => 
         bodyStyle={{ paddingTop: 0 }}
         cover={
           <Image>
-            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt='weather' />
           </Image>
         }>
         <Card.Meta

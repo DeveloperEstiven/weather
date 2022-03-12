@@ -1,9 +1,7 @@
 import { Col } from 'antd'
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import { CurrentWeather, DailyWeather } from '../../../../../../../api/WeatherResponseTypes'
-import { toCurrentUnit, UnitTemp } from '../../../../../../../utils/convertTemperature'
+import { toCurrentUnit } from '../../../../../../../utils/convertTemperature'
 import {
   CloudsIcon,
   DewPointIcon,
@@ -30,23 +28,8 @@ import {
   WSW,
 } from '../../../../../../UI/icons/icons'
 import { commonUnitSymbols } from '../../../FilterHourlyForecast/FilterHourlyForecast.types'
-import './ColumnItem.scss'
-
-const CardItem = styled.div`
-  background: ${props => props.theme.colors.backgroundPrimary};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
-  border-radius: ${props => props.theme.borderRadius};
-  padding: 10px;
-  div {
-    margin-bottom: 5px;
-  }
-`
+import { CardItem } from './ColumnItem.styles'
+import { ColumnItemProps } from './ColumnItem.types'
 
 const windDirection = (deg: number, fontSize: string) => {
   const compassSector = [
@@ -86,12 +69,6 @@ const getIcon = (key: keyof typeof commonUnitSymbols, fontSize: string, wind_deg
     visibility: <VisibilityIcon style={{ fontSize }} />,
   }
   return icons[key]
-}
-
-type ColumnItemProps = {
-  weather: CurrentWeather | DailyWeather
-  title: keyof typeof commonUnitSymbols
-  unit?: UnitTemp
 }
 
 export const ColumnItem: FC<ColumnItemProps> = ({ weather, title, unit }) => {

@@ -1,6 +1,6 @@
 import { Dispatch } from 'react'
 import { BaseThunk, InferAction } from '../..'
-import geocoderApi, { AutocompleteResponse, AutocompleteResult } from '../../../api/geocoderAPI'
+import geocoderApi, { AutocompleteResult } from '../../../api/geocoderAPI'
 import { FilterOption } from '../../../components/WeatherContainer/Weather/WeatherDisplay/FilterHourlyForecast/FilterHourlyForecast'
 import { getUniqueAutocomplete, getUniquePossibleCities } from '../../../utils/parse'
 import WeatherAPI from './../../../api/WeatherAPI'

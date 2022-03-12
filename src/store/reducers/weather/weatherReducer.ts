@@ -1,5 +1,5 @@
-import { AutocompleteResponse, AutocompleteResult } from '../../../api/geocoderAPI'
-import { WeatherResponse, CityResponse, DailyWeather } from './../../../api/WeatherResponseTypes'
+import { AutocompleteResult } from '../../../api/geocoderAPI'
+import { CityResponse, DailyWeather, WeatherResponse } from './../../../api/WeatherResponseTypes'
 import { WeatherAction, WeatherActionsTypes } from './weatherActionCreators'
 
 const initialState = {

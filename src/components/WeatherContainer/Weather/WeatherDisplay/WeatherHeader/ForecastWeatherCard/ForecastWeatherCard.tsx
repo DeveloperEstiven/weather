@@ -1,18 +1,10 @@
 import React, { FC } from 'react'
-import { DailyWeather } from '../../../../../../api/WeatherResponseTypes'
-import { UnitTemp } from '../../../../../../utils/convertTemperature'
 import DetailInfo from '../DetailInfo'
 import Header from '../Header'
-import { WeatherCards } from '../WeatherHeader'
+import { WeatherCards } from '../WeatherHeader.styles'
 import './ForecastWeatherCard.scss'
+import { ForecastWeatherCardProps } from './ForecastWeatherCard.types'
 import WeatherTabs from './WeatherTabs'
-
-type ForecastWeatherCardProps = {
-  forecastWeather: DailyWeather
-  timezone: string
-  isCelsius: boolean
-  unit: UnitTemp
-}
 
 const ForecastWeatherCard: FC<ForecastWeatherCardProps> = ({ forecastWeather, timezone, isCelsius, unit }) => {
   return (

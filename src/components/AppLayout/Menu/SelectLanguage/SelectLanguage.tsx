@@ -5,18 +5,13 @@ import React, { FC, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 import { getCookie } from 'typescript-cookie'
 import { getWeatherList } from '../../../../store/reducers/weather/weatherSelectors'
 import { languages, SupportedLanguages } from '../../../../utils/languages'
 import { getGeoPath } from '../../../../utils/url'
-import './SelectLanguage.scss'
+import { Arrow } from './SelectLanguage.styles'
 
 const { Option } = Select
-
-const Arrow = styled.span`
-  color: ${props => props.theme.colors.text};
-`
 
 export const getLanguageFromCookie = () => (getCookie('i18next') as SupportedLanguages) || 'en'
 

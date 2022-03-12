@@ -1,17 +1,10 @@
 import { Row } from 'antd'
 import React, { FC } from 'react'
-import { CurrentWeather, DailyWeather } from '../../../../../../api/WeatherResponseTypes'
-import { UnitTemp } from '../../../../../../utils/convertTemperature'
 import { commonUnitSymbols } from '../../FilterHourlyForecast/FilterHourlyForecast.types'
 import ColumnItem from './ColumnItem'
-import './DetailInfo.scss'
+import { DetailInfoProps } from './DetailInfo.types'
 
 const gutter = { xs: 4, sm: 8, md: 8, lg: 16 }
-
-type DetailInfoProps = {
-  weather: DailyWeather | CurrentWeather
-  unit: UnitTemp
-}
 
 const DetailInfo: FC<DetailInfoProps> = ({ weather, unit }) => {
   const titles: (keyof typeof commonUnitSymbols)[] = ['pressure', 'humidity', 'wind_speed', 'dew_point', 'uvi', 'clouds']

@@ -2,20 +2,12 @@ import React, { FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { CurrentWeather } from '../../../../../../api/WeatherResponseTypes'
-import { toCurrentUnit, UnitTemp } from '../../../../../../utils/convertTemperature'
+import { toCurrentUnit } from '../../../../../../utils/convertTemperature'
 import DetailInfo from '../DetailInfo'
 import Header from '../Header'
 import Slider from '../Slider'
-import { WeatherCards } from '../WeatherHeader'
-import './CurrentWeatherCard.scss'
-
-type CurrentWeatherCardProps = {
-  currentWeather: CurrentWeather
-  timezone: string
-  isCelsius: boolean
-  unit: UnitTemp
-}
+import { WeatherCards } from '../WeatherHeader.styles'
+import { CurrentWeatherCardProps } from './CurrentWeatherCard.types'
 
 const CurrentWeatherCard: FC<CurrentWeatherCardProps> = ({ currentWeather, timezone, isCelsius, unit }) => {
   return (

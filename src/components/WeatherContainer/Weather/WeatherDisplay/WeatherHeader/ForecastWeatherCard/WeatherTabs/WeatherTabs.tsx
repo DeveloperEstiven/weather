@@ -1,30 +1,12 @@
 import { Tabs } from 'antd'
 import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DailyTime, DailyWeather } from '../../../../../../../api/WeatherResponseTypes'
-import { toCurrentUnit, UnitTemp } from '../../../../../../../utils/convertTemperature'
+import { toCurrentUnit } from '../../../../../../../utils/convertTemperature'
 import Slider from '../../Slider'
-import styled from 'styled-components'
+import { TabName } from './WeatherTabs.styles'
+import { TabNames, TabProps } from './WeatherTabs.types'
 
 const { TabPane } = Tabs
-
-type TabProps = {
-  weather: DailyWeather
-  timezone: string
-  unit: UnitTemp
-  isCelsius: boolean
-}
-
-type TabNames = {
-  name: string
-  key: keyof DailyTime
-}[]
-
-const TabName = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${props => props.theme.colors.text};
-`
 
 const tabNames: TabNames = [
   { name: 'morning', key: 'morn' },

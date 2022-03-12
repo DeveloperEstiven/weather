@@ -1,19 +1,7 @@
-import { Space } from 'antd'
 import React, { FC } from 'react'
-import styled from 'styled-components'
 import { timestampToDate } from '../../../../../../../utils/parseTimestamp'
-import './SunTime.scss'
-
-type SunTimeProps = {
-  title: string
-  dt: number
-  timezone: string
-  Icon: (props: any) => JSX.Element
-}
-
-const StyledSpace = styled(Space)`
-  flex-basis: 33.33333%;
-`
+import { StyledSpace } from './SunTime.styles'
+import { SunTimeProps } from './SunTime.types'
 
 const SunTime: FC<SunTimeProps> = ({ title, dt, timezone, Icon }) => {
   const { hours, minutes } = timestampToDate(dt, timezone)

@@ -1,29 +1,12 @@
 import { MenuUnfoldOutlined } from '@ant-design/icons'
-import { Drawer, Space } from 'antd'
+import { Drawer } from 'antd'
 import React, { FC } from 'react'
-import './Menu.scss'
+import { useTranslation } from 'react-i18next'
+import { StyledUl } from './Menu.styles'
+import { MenuProps } from './Menu.types'
 import SelectLanguage from './SelectLanguage'
 import ToggleTheme from './ToggleTheme'
 import UnitsButtons from './UnitsButtons'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-
-type MenuProps = {
-  visible: boolean
-  onClose: () => void
-}
-
-const StyledUl = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  li {
-    margin-bottom: 20px;
-  }
-`
 
 const Menu: FC<MenuProps> = ({ visible, onClose }) => {
   const { t } = useTranslation()

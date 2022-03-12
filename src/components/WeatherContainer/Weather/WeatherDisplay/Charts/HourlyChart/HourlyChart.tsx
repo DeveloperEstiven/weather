@@ -3,20 +3,13 @@ import React, { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
-import { HourlyWeather } from '../../../../../../api/WeatherResponseTypes'
 import { getWeatherList } from '../../../../../../store/reducers/weather/weatherSelectors'
 import { getChartHourlyData, toArray } from '../../../../../../utils/chartData/hourlyChart'
 import { DataChart } from '../../../../../../utils/chartData/types'
 import { UnitType } from '../../FilterHourlyForecast/FilterHourlyForecast'
 import { filterUnitSymbols } from '../../FilterHourlyForecast/FilterHourlyForecast.types'
 import { commonProperties } from '../commonOptions'
-import './HourlyChart.scss'
-
-type HourlyChartProps = {
-  weatherHourly: HourlyWeather[]
-  isCelsius: boolean
-  timezone: string
-}
+import { HourlyChartProps } from './HourlyChart.types'
 
 const HourlyChart: FC<HourlyChartProps> = ({ weatherHourly, isCelsius, timezone }) => {
   const { selectedFilter } = useSelector(getWeatherList)

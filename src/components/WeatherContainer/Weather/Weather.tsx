@@ -1,9 +1,7 @@
 import { Divider } from 'antd'
-import React, { FC, memo, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router'
-import styled from 'styled-components'
-import { CityResponse } from '../../../api/WeatherResponseTypes'
 import { getWeather } from '../../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../../store/reducers/weather/weatherSelectors'
 import { getGeoPath } from '../../../utils/url'
@@ -11,26 +9,11 @@ import { getLanguageFromCookie } from '../../AppLayout/Menu/SelectLanguage/Selec
 import Error from '../../UI/Error'
 import CityName from './CityName'
 import Forecast from './Forecast'
-import './Weather.scss'
+import { WeatherProps } from './Weather.types'
 import WeatherDisplay from './WeatherDisplay'
 
-const StyledDiv = styled.div`
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  border-radius: 4px;
-  background-color: #1088e9;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-`
-
-type WeatherProps = {
-  city: CityResponse
-}
-
-const Weather: FC<WeatherProps> = memo(({ city }) => {
-  let { error, weather, isFetching, possibleCities, hasWeather, hasForecast } = useSelector(getWeatherList)
+const Weather: FC<WeatherProps> = ({ city }) => {
+  let { error, weather, isFetching, hasWeather, hasForecast } = useSelector(getWeatherList)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const code = getLanguageFromCookie()
@@ -46,6 +29,7 @@ const Weather: FC<WeatherProps> = memo(({ city }) => {
       const dayNum = num ? num : 'day=0'
       navigate(`/${code}/${cityPath || ''}/${dayNum}`)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, code, city])
 
   if (error) return <Error errorMessage={error} />
@@ -61,6 +45,6 @@ const Weather: FC<WeatherProps> = memo(({ city }) => {
       )}
     </>
   )
-})
+}
 
 export default Weather

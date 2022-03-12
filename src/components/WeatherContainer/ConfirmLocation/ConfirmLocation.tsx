@@ -2,7 +2,6 @@ import { SmileOutlined } from '@ant-design/icons'
 import { Button, Input, notification, Space } from 'antd'
 import { t } from 'i18next'
 import React from 'react'
-import './ConfirmLocation.scss'
 
 type Confirm = (flag: boolean) => void
 

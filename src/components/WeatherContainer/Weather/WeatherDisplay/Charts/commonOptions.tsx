@@ -1,5 +1,4 @@
 import { LegendProps } from '@nivo/legends'
-import { SliceTooltipProps } from '@nivo/line'
 import { ScaleSpec } from '@nivo/scales'
 import { ThemeType } from '../../../../../styles/theme/theme'
 import { DataChart } from '../../../../../utils/chartData/types'

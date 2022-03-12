@@ -3,32 +3,12 @@ import { Select } from 'antd'
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
 import { weatherActions } from '../../../../../store/reducers/weather/weatherActionCreators'
 import { UnitTemp } from '../../../../../utils/convertTemperature'
-import './FilterHourlyForecast.scss'
+import { Arrow, SelectWrapper } from './FilterHourlyForecast.styles'
 import { filterUnitSymbols } from './FilterHourlyForecast.types'
 
 const { Option } = Select
-
-const SelectWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 24px;
-  //? Landscape tablets and medium desktops //! < 480px
-  @media (max-width: 767px) {
-    padding-right: 12px;
-  }
-  .ant-select {
-    border-radius: ${props => props.theme.borderRadius};
-    color: ${props => props.theme.colors.text};
-    background-color: ${props => props.theme.colors.backgroundPrimary};
-  }
-`
-const Arrow = styled.span`
-  color: ${props => props.theme.colors.text};
-`
 
 export type FilterOption = keyof typeof filterUnitSymbols
 export type UnitSymbolT = typeof filterUnitSymbols[FilterOption]
@@ -43,7 +23,7 @@ const FilterHourlyForecast: FC = () => {
     const filterValue = (localStorage.getItem('filter') as FilterOption) || 'temp'
     dispatch(weatherActions.setSelectedFilter(filterValue))
     setFilterValue(filterValue)
-  }, [])
+  }, [dispatch]) //!
 
   const onFilterSelect = (value: FilterOption) => {
     localStorage.setItem('filter', value)

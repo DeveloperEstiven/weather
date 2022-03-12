@@ -1,19 +1,18 @@
-import { Input, message, Spin } from 'antd'
+import { Input, message } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import styled from 'styled-components'
 import { getCityInfo } from '../../store/reducers/app/appActionCreators'
 import { getAppLocation } from '../../store/reducers/app/appSelectors'
-import { getCityByGeo, weatherActions } from '../../store/reducers/weather/weatherActionCreators'
+import { getCityByGeo } from '../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../store/reducers/weather/weatherSelectors'
 import { getCityLocationFromUrl } from '../../utils/url'
 import CitiesSelect from './CitiesSelect'
 import confirmLocation from './ConfirmLocation'
 import InputCityName from './InputCityName'
 import ModalLocation from './ModalLocation'
-import { IsLocationCorrect } from './ModalLocation/ModalLocation'
+import { IsLocationCorrect } from './ModalLocation/ModalLocation.types'
 import Weather from './Weather'
 
 const WeatherContainer = () => {
@@ -31,7 +30,7 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     !cityPath && (showAgain === 'true' || !showAgain) && confirmLocation(setIsAcceptedLocation, inputRef)
-  }, [])
+  }, [cityPath, showAgain]) //! cityPath, showAgain
 
   useEffect(() => {
     if (cityPath) {
@@ -67,7 +66,7 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     location.address && !cityPath && dispatch(getCityByGeo(location.lat, location.lon, location.address.city))
-  }, [location])
+  }, [location, cityPath, dispatch]) //! cityPath, dispatch
 
   return (
     <div>
