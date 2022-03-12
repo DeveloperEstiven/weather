@@ -6,6 +6,11 @@ export const GlobalStyle = createGlobalStyle`
     transition: color .3s linear;
     transition: background-color .3s linear;
   }
+
+  /* .ant-card-bordered {
+    border-top: 2px solid red;
+  } */
+
   ::-moz-selection {
   /* Code for Firefox */
   background: ${props => props.theme.colors.backgroundSecondary};
@@ -15,6 +20,16 @@ export const GlobalStyle = createGlobalStyle`
   ::selection {
     background: ${props => props.theme.colors.backgroundSecondary};
     color: ${props => props.theme.colors.text}
+  }
+
+  .ant-tabs-top>.ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-top>.ant-tabs-nav:before, .ant-tabs-top>div>.ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-top>div>.ant-tabs-nav:before { 
+    bottom: 1px;
+    background: ${props => props.theme.colors.backgroundSecondary};
+  }
+  
+  .ant-tabs-bottom>.ant-tabs-nav:before, .ant-tabs-bottom>div>.ant-tabs-nav:before, .ant-tabs-top>.ant-tabs-nav:before, .ant-tabs-top>div>.ant-tabs-nav:before 
+  {
+    border-bottom: 1px solid ${props => props.theme.colors.text};
   }
   .ant-select:not(.ant-select-customize-input) .ant-select-selector { 
     background-color: inherit; 
@@ -47,13 +62,16 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
   }
-
+  .ant-select-selection-placeholder {
+    color: ${props => props.theme.colors.text};
+    opacity: .7;
+  }
   .ant-drawer-header { 
     background-color: ${props => props.theme.colors.backgroundPrimary};
     color: ${props => props.theme.colors.text};
     border-bottom: 1px solid ${props => props.theme.colors.backgroundSecondary};
     border-radius: 0;
-    height: 64px;
+    height: 50px;
   }
   .ant-drawer-body { 
     background-color: ${props => props.theme.colors.backgroundMain};

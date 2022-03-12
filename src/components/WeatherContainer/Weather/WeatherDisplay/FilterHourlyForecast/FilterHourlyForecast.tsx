@@ -1,6 +1,6 @@
 import { DownOutlined } from '@ant-design/icons'
 import { Select } from 'antd'
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
@@ -37,26 +37,43 @@ export type UnitType = UnitTemp | UnitSymbolT
 const FilterHourlyForecast: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const onFilterSelect = (value: FilterOption) => dispatch(weatherActions.setSelectedFilter(value))
+  const [filterValue, setFilterValue] = useState<FilterOption | null>(null)
+
+  useEffect(() => {
+    const filterValue = (localStorage.getItem('filter') as FilterOption) || 'temp'
+    dispatch(weatherActions.setSelectedFilter(filterValue))
+    setFilterValue(filterValue)
+  }, [])
+
+  const onFilterSelect = (value: FilterOption) => {
+    localStorage.setItem('filter', value)
+    dispatch(weatherActions.setSelectedFilter(value))
+    setFilterValue(value)
+  }
+
   return (
-    <SelectWrapper>
-      <Select
-        bordered={false}
-        suffixIcon={
-          <Arrow>
-            <DownOutlined />
-          </Arrow>
-        }
-        style={{ width: 150 }}
-        defaultValue='temp'
-        onChange={onFilterSelect}>
-        {Object.keys(filterUnitSymbols).map(option => (
-          <Option key={option} value={option}>
-            {t(option)}
-          </Option>
-        ))}
-      </Select>
-    </SelectWrapper>
+    <div>
+      {filterValue && (
+        <SelectWrapper>
+          <Select
+            bordered={false}
+            suffixIcon={
+              <Arrow>
+                <DownOutlined />
+              </Arrow>
+            }
+            style={{ width: 150 }}
+            defaultValue={filterValue}
+            onChange={onFilterSelect}>
+            {Object.keys(filterUnitSymbols).map(option => (
+              <Option key={option} value={option}>
+                {t(option)}
+              </Option>
+            ))}
+          </Select>
+        </SelectWrapper>
+      )}
+    </div>
   )
 }
 

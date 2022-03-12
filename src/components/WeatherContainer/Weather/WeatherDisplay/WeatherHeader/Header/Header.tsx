@@ -6,6 +6,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 
 import './Header.scss'
 import { useTranslation } from 'react-i18next'
+import { media } from '../../../../../../styles/theme/globalStyle'
 
 const StyledHeader = styled.div<{ istoday: boolean }>`
   display: flex;
@@ -14,6 +15,12 @@ const StyledHeader = styled.div<{ istoday: boolean }>`
   @media (max-width: 480px) {
     flex-direction: column;
     text-align: center;
+  }
+`
+
+const StyledSpan = styled.span`
+  ${media.md3} {
+    margin-top: 10px;
   }
 `
 
@@ -34,12 +41,12 @@ const Header: FC<HeaderType> = ({ dt, timezone }) => {
         {date} {t(month.full).toLowerCase()}, {t(weekDay.full).toLowerCase()}
       </span>
       {isToday && (
-        <span>
+        <StyledSpan>
           {t('update_time')}:{' '}
           <strong>
             {hours}:{minutes} <ClockCircleOutlined />
           </strong>
-        </span>
+        </StyledSpan>
       )}
     </StyledHeader>
   )

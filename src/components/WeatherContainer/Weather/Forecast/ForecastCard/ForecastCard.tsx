@@ -2,6 +2,8 @@ import { Badge, Card, Tooltip, Typography } from 'antd'
 import React, { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 import styled, { css } from 'styled-components'
 import { DailyWeather } from '../../../../../api/WeatherResponseTypes'
 import ava from '../../../../../assets/cloudy.png'
@@ -16,7 +18,7 @@ import './ForecastCard.scss'
 type ForecastCardProps = {
   weather: DailyWeather
   timezone: string
-  num: number
+  cardNum: number
 }
 
 const Image = styled.div`
@@ -59,10 +61,12 @@ const StyledTooltip = styled(Tooltip)`
   }
 `
 
-const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, num }) => {
+const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, cardNum }) => {
   const { units, forecastNum } = useSelector(getWeatherList)
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { code, cityPath } = useParams()
 
   const [unitTemp, setUnitTemp] = useState({
     max: Math.round(weather.temp.max),
@@ -82,14 +86,15 @@ const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, num }) => {
     }
   }, [units])
 
-  const onForecastClick = (dayForecast: DailyWeather, num: number) => {
-    if (forecastNum !== num) {
-      dispatch(weatherActions.forecastReceived(dayForecast, num))
+  const onForecastClick = (dayForecast: DailyWeather, dayNum: number) => {
+    if (forecastNum !== dayNum) {
+      dispatch(weatherActions.forecastReceived(dayForecast, dayNum))
     }
-    if (num === 0 && forecastNum !== num) {
+    if (dayNum === 0 && forecastNum !== dayNum) {
       dispatch(weatherActions.toggleHasWeather())
       dispatch(weatherActions.toggleHasForecast())
     }
+    navigate(`/${code}/${cityPath || ''}/day=${dayNum}`)
   }
 
   const { weekDay, date, month } = timestampToDate(weather.dt, timezone)
@@ -97,10 +102,10 @@ const ForecastCard: FC<ForecastCardProps> = ({ weather, timezone, num }) => {
   return (
     <MyBadge text={`${date} ${t(month.short)}`}>
       <StyledCard
-        active={num === forecastNum ? 1 : 0}
+        active={cardNum === forecastNum ? 1 : 0}
         bordered
         size='small'
-        onClick={() => onForecastClick(weather, num)}
+        onClick={() => onForecastClick(weather, cardNum)}
         hoverable
         bodyStyle={{ paddingTop: 0 }}
         cover={

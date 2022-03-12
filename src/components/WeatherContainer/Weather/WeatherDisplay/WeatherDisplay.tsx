@@ -25,8 +25,8 @@ const WeatherDisplay = () => {
     <>
       <WeatherHeader weather={weather} />
       <ChartWrapper>
-        {hasWeather ? <FilterHourlyForecast /> : null}
-        {hasWeather || hasForecast ? <Charts weather={weather} /> : null}
+        {hasWeather && <FilterHourlyForecast />}
+        {(hasWeather || hasForecast) && <Charts weather={weather} />}
       </ChartWrapper>
     </>
   )

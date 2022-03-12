@@ -25,26 +25,10 @@ export const getUniqueAutocomplete = (response: AutocompleteResponse) => {
   return res
 }
 
-function onlyUnique(value: number, index: number, self: number[]) {
-  return self.indexOf(value) === index
-}
-
 export const getUniquePossibleCities = (response: CityResponse[]) => {
-  //! BRATISLAVA
   const names = response.map(city => `${city.name} ${String(city.country)} ${String(city.state)}`)
-  const uniqueNames = names.filter((item, i, ar) => ar.indexOf(item) === i)
-  const uniqueIndexes = []
-  for (let i = 0; i < uniqueNames.length; i++) {
-    const element = uniqueNames[i]
-    const uniqueIndex = names[i].indexOf(element)
-    if (uniqueIndex > 0) uniqueIndexes.push(uniqueIndex)
-  }
-  console.log('uniqueIndexes', uniqueIndexes)
-  const res = []
-  for (let i = 0; i < uniqueIndexes.length; i++) {
-    const index = uniqueIndexes[i]
-    res.push(response[index])
-  }
-  console.log(uniqueIndexes)
-  return res
+  return names
+    .map((n, i) => (names.indexOf(n) === i ? i : -1))
+    .filter(n => n >= 0)
+    .map(n => response[n])
 }

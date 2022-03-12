@@ -70,13 +70,15 @@ const WeatherContainer = () => {
   }, [location])
 
   return (
-    <div className='container'>
-      <InputCityName /* inputRef={inputRef} */ />
-      {location.address && (
-        <ModalLocation inputRef={inputRef} address={location.address} setIsLocationCorrect={setIsLocationCorrect} />
-      )}
-      {(isLocationCorrect === 'default' || isLocationCorrect === 'true') && <Weather city={currentCity} />}
-      {possibleCities.length > 1 && <CitiesSelect />}
+    <div>
+      <div className='container'>
+        <InputCityName />
+        {location.address && (
+          <ModalLocation inputRef={inputRef} address={location.address} setIsLocationCorrect={setIsLocationCorrect} />
+        )}
+        {(isLocationCorrect === 'default' || isLocationCorrect === 'true') && <Weather city={currentCity} />}
+        {possibleCities.length > 1 && <CitiesSelect />}
+      </div>
     </div>
   )
 }

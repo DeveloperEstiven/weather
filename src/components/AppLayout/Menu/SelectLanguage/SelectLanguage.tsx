@@ -3,6 +3,7 @@ import { Select, Space } from 'antd'
 import i18next from 'i18next'
 import React, { FC, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { getCookie } from 'typescript-cookie'
@@ -22,13 +23,14 @@ export const getLanguageFromCookie = () => (getCookie('i18next') as SupportedLan
 const SelectLanguage: FC = () => {
   const { currentCity } = useSelector(getWeatherList)
   const navigate = useNavigate()
+  const { num } = useParams()
   const [currentLang, setCurrentLang] = useState<SupportedLanguages>('en')
   const [cityPath, setCityPath] = useState<string>('')
 
   const onLangSelect = (code: SupportedLanguages) => {
     i18next.changeLanguage(code)
     if (currentCity.country) {
-      navigate(`/${code}/${cityPath || ''}`)
+      navigate(`/${code}/${cityPath || ''}/${num}`)
     } else {
       navigate(`/${code}`)
     }

@@ -1,11 +1,14 @@
+import { RightOutlined } from '@ant-design/icons'
 import { Collapse, List } from 'antd'
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router'
 import styled from 'styled-components'
 import { DailyWeather } from '../../../../api/WeatherResponseTypes'
+import { weatherActions } from '../../../../store/reducers/weather/weatherActionCreators'
 import './Forecast.scss'
-import { useTranslation } from 'react-i18next'
 import ForecastCard from './ForecastCard'
-import { RightOutlined } from '@ant-design/icons'
 
 type ForecastProps = {
   weather: DailyWeather[]
@@ -42,6 +45,16 @@ const Arrow = styled.span`
 
 const Forecast: FC<ForecastProps> = ({ weather, timezone }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { num } = useParams()
+
+  useEffect(() => {
+    const dayNum = num ? parseInt(num[num.length - 1]) : 0
+    if (dayNum !== 0) {
+      dispatch(weatherActions.forecastReceived(weather[dayNum], dayNum))
+    }
+  }, [])
+
   return (
     <div>
       <StyledCollapse
@@ -59,7 +72,7 @@ const Forecast: FC<ForecastProps> = ({ weather, timezone }) => {
             dataSource={weather}
             renderItem={(day, num) => (
               <List.Item>
-                <ForecastCard weather={day} num={num} timezone={timezone} />
+                <ForecastCard weather={day} cardNum={num} timezone={timezone} />
               </List.Item>
             )}
           />

@@ -1,5 +1,6 @@
 import { DailyWeather, TemperatureDaily } from '../../api/WeatherResponseTypes'
 import { toFahrenheit } from '../convertTemperature'
+import { t } from 'i18next'
 
 const getDataFromObj = (objs: {}[], isCelsius: boolean) => {
   const res = []
@@ -9,7 +10,7 @@ const getDataFromObj = (objs: {}[], isCelsius: boolean) => {
     for (let key in currentObj) {
       let val = currentObj[key as keyof typeof currentObj] as number
       if (!isCelsius) val = toFahrenheit(val)
-      temp.push({ x: key, y: val })
+      temp.push({ x: t(key), y: val })
     }
     res.push(temp)
   }
@@ -36,7 +37,7 @@ export const getChartDailyData = (dailyWeather: DailyWeather, isCelsius: boolean
   const temps = getCurrentObjKeys([dailyWeather.temp, dailyWeather.feels_like])
   const tempsData = getDataFromObj(temps, isCelsius)
   return [
-    { id: 'temperature', data: tempsData[0] },
-    { id: 'feels like', data: tempsData[1] },
+    { id: t('feels_like'), data: tempsData[1] },
+    { id: t('temp'), data: tempsData[0] },
   ]
 }

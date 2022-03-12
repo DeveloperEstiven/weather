@@ -1,4 +1,4 @@
-import AppLoyaut from '../components/AppLayout'
+import AppLoyaut from '../components/AppLayout/AppLayout'
 import Page404 from '../components/Page404'
 import Weather from '../components/WeatherContainer/Weather'
 

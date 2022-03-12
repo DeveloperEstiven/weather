@@ -1,14 +1,10 @@
 import React, { Suspense } from 'react'
-import { BrowserRouter } from 'react-router-dom'
-
-import { routes } from './router'
 import { Provider } from 'react-redux'
-import store from './store'
-import Preloader from './components/UI/Preloader'
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AppLoyaut from './components/AppLayout/AppLayout'
 import Page404 from './components/Page404'
-import AppLoyaut from './components/AppLayout'
-import Weather from './components/WeatherContainer/Weather'
+import Preloader from './components/UI/Preloader'
+import store from './store'
 
 const App = () => {
   return (
@@ -18,7 +14,9 @@ const App = () => {
           <Routes>
             <Route path='/' element={<AppLoyaut />} />
             <Route path='/:code' element={<AppLoyaut />}>
-              <Route path=':cityPath' element={<AppLoyaut />} />
+              <Route path=':cityPath' element={<AppLoyaut />}>
+                <Route path=':num' element={<AppLoyaut />} />
+              </Route>
             </Route>
             <Route path='*' element={<Page404 />} />
           </Routes>

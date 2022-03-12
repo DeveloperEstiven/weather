@@ -1,15 +1,14 @@
-import { BackTop, Divider, Spin } from 'antd'
+import { Divider } from 'antd'
 import React, { FC, memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
+import styled from 'styled-components'
 import { CityResponse } from '../../../api/WeatherResponseTypes'
 import { getWeather } from '../../../store/reducers/weather/weatherActionCreators'
 import { getWeatherList } from '../../../store/reducers/weather/weatherSelectors'
 import { getGeoPath } from '../../../utils/url'
 import { getLanguageFromCookie } from '../../AppLayout/Menu/SelectLanguage/SelectLanguage'
 import Error from '../../UI/Error'
-import styled from 'styled-components'
-import CitiesSelect from '../CitiesSelect'
 import CityName from './CityName'
 import Forecast from './Forecast'
 import './Weather.scss'
@@ -35,6 +34,7 @@ const Weather: FC<WeatherProps> = memo(({ city }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const code = getLanguageFromCookie()
+  const { num } = useParams()
 
   useEffect(() => {
     const { lat, lon } = city
@@ -43,17 +43,18 @@ const Weather: FC<WeatherProps> = memo(({ city }) => {
       const { country, name, lat, lon } = city
       const cityPath = getGeoPath(country, name, lat, lon)
       const code = getLanguageFromCookie()
-      navigate(`/${code}/${cityPath || ''}`)
+      const dayNum = num ? num : 'day=0'
+      navigate(`/${code}/${cityPath || ''}/${dayNum}`)
     }
   }, [dispatch, code, city])
 
   if (error) return <Error errorMessage={error} />
   return (
     <>
-      {!isFetching && (
+      {!isFetching && (hasWeather || hasForecast) && (
         <>
-          {(hasWeather || hasForecast) && <CityName city={city} />}
-          {(hasWeather || hasForecast) && <Forecast weather={weather.daily} timezone={weather.timezone} />}
+          {<CityName city={city} />}
+          {<Forecast weather={weather.daily} timezone={weather.timezone} />}
           <WeatherDisplay />
           <Divider />
         </>
