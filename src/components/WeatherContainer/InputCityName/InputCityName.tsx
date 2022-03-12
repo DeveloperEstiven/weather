@@ -53,15 +53,14 @@ const InputCityName: FC = memo(() => {
 
   return (
     <Search>
-      <Formik onSubmit={onFinish} validationSchema={validationSchema} initialValues={{ autocomplete: '' }}>
-        {({ errors, touched }) => (
-          <FormInput
-            errors={errors}
-            touched={touched}
-            autocompleteResult={autocompleteResult}
-            value={value}
-            setValue={setValue}
-          />
+      <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
+        onSubmit={onFinish}
+        validationSchema={validationSchema}
+        initialValues={{ autocomplete: '' }}>
+        {({ errors }) => (
+          <FormInput errors={errors} autocompleteResult={autocompleteResult} value={value} setValue={setValue} />
         )}
       </Formik>
     </Search>

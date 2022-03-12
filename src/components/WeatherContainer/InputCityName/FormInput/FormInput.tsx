@@ -11,12 +11,12 @@ message.config({
   maxCount: 1,
 })
 
-const FormInput: FC<FormInputProps> = ({ autocompleteResult, value, setValue, errors, touched }) => {
+const FormInput: FC<FormInputProps> = ({ autocompleteResult, value, setValue, errors }) => {
   const { t } = useTranslation()
 
   useEffect(() => {
-    errors.autocomplete && touched.autocomplete && message.error(errors.autocomplete)
-  }, [errors, touched.autocomplete]) //! touched.autocomplete
+    errors.autocomplete && message.error(errors.autocomplete)
+  }, [errors])
 
   return (
     <Form>
@@ -29,7 +29,7 @@ const FormInput: FC<FormInputProps> = ({ autocompleteResult, value, setValue, er
           value={value}
           onChange={setValue}
         />
-        <StyledButton>{t('search')}</StyledButton>
+        <StyledButton disabled={false}>{t('search')}</StyledButton>
       </FlexedDiv>
     </Form>
   )
